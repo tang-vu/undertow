@@ -141,7 +141,11 @@ Open `demo/index.html` in any browser (no server needed).
 
 ---
 
-## Demo video (60–90s) outline
+## Demo video
+
+📹 **`video/undertow_demo.mp4`** — 84s narrated walkthrough (rebuild: `python video/build_scenes.py && python video/build_video.py`).
+
+### Script outline (60–90s)
 
 1. **0–15s — hook:** "Crypto sentiment screams on the surface; the risk builds underneath." Show the
    stress dial flipping euphoric while funding stays crowded.

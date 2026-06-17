@@ -78,8 +78,8 @@ leverage. No cherry-picked window. No 400% overfit curve.
 
 ## Links
 
-- Repo: `https://github.com/<your-handle>/undertow` *(fill in)*
-- Demo video: *(fill in — 60–90s)*
+- Repo: https://github.com/tang-vu/undertow
+- Demo video: `video/undertow_demo.mp4` (84s, narrated) — *upload to YouTube/Loom and paste the link here*
 - Live demo page: `demo/index.html`
 
 ---
