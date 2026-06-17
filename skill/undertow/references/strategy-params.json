@@ -1,0 +1,136 @@
+{
+  "version": "1.0",
+  "generated_from_window": [
+    "2019-01-01",
+    "2026-06-16"
+  ],
+  "assets_calibrated": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "SOLUSDT",
+    "XRPUSDT"
+  ],
+  "composite": {
+    "formula": "S = w_fng*z(fng) + w_funding*z(funding) + w_stretch*z(price_stretch)",
+    "weights": {
+      "w_fng": 0.5,
+      "w_funding": 0.5,
+      "w_stretch": 0.0
+    },
+    "z_window_days": 90,
+    "sign_convention": "S>0 = froth (greed / crowded longs / stretched); S<0 = capitulation (fear)",
+    "note": "Backtest uses strictly causal rolling z-scores; the live Skill z-scores a live reading against these snapshot baselines as a real-time approximation."
+  },
+  "normalization_baselines": {
+    "fng_market": {
+      "mean": 47.37055016,
+      "std": 22.49488072
+    },
+    "funding": {
+      "BTCUSDT": {
+        "mean": 0.00032242,
+        "std": 0.00058116
+      },
+      "ETHUSDT": {
+        "mean": 0.00038853,
+        "std": 0.00075521
+      },
+      "BNBUSDT": {
+        "mean": -6.91e-06,
+        "std": 0.00110933
+      },
+      "SOLUSDT": {
+        "mean": 2.22e-06,
+        "std": 0.00420545
+      },
+      "XRPUSDT": {
+        "mean": 0.00041423,
+        "std": 0.00099047
+      }
+    },
+    "stretch": {
+      "BTCUSDT": {
+        "mean": 0.01095057,
+        "std": 0.08809048
+      },
+      "ETHUSDT": {
+        "mean": 0.01468057,
+        "std": 0.11677169
+      },
+      "BNBUSDT": {
+        "mean": 0.01944557,
+        "std": 0.13282424
+      },
+      "SOLUSDT": {
+        "mean": 0.02042352,
+        "std": 0.18213604
+      },
+      "XRPUSDT": {
+        "mean": 0.00976945,
+        "std": 0.14950088
+      }
+    },
+    "stretch_ema_span": 30
+  },
+  "regime": {
+    "macro_filter": "close vs EMA50 (bull/bear)",
+    "er_window": 20,
+    "er_threshold": 0.3,
+    "labels": [
+      "TREND",
+      "RANGE"
+    ],
+    "skill_hub_service": "detect_market_regime -> {trend_expansion, range_chop, overheated_longs, liquidation_stress, mixed_transition}"
+  },
+  "decision_rules": {
+    "s_scale": 1.5,
+    "trend_froth_haircut": 0.5,
+    "range_long_base": 0.6,
+    "range_tilt": 0.4,
+    "range_short_cap": 0.5,
+    "short_bear": 0.15,
+    "dip_bear": 0.0,
+    "target_vol_annual": 1.0,
+    "max_position": 1.0,
+    "drawdown_guard": 0.28,
+    "cost_bps_one_way": 10.0
+  },
+  "backtest_headline": {
+    "strategy_walk_forward": {
+      "sharpe": 0.31428,
+      "sortino": 0.356229,
+      "max_drawdown": -0.350617,
+      "total_return": 0.202386,
+      "calmar": 0.111644
+    },
+    "btc_buy_hold_wf": {
+      "sharpe": 0.381223,
+      "sortino": 0.534289,
+      "max_drawdown": -0.766293,
+      "total_return": 0.346687,
+      "calmar": 0.083484
+    },
+    "fng_contrarian_wf": {
+      "sharpe": -0.121897,
+      "sortino": -0.128105,
+      "max_drawdown": -0.707151,
+      "total_return": -0.526128,
+      "calmar": -0.203757
+    },
+    "strategy_full": {
+      "sharpe": 1.335116,
+      "sortino": 1.579243,
+      "max_drawdown": -0.332753,
+      "total_return": 5.328963,
+      "calmar": 0.941139
+    },
+    "btc_buy_hold_full": {
+      "sharpe": 0.763996,
+      "sortino": 1.03105,
+      "max_drawdown": -0.766293,
+      "total_return": 5.503668,
+      "calmar": 0.415581
+    }
+  }
+}

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+backtest/.venv/
+.venv/
+*.egg-info/
+
+# Research scratch (cloned reference repo, not part of submission)
+.research-tmp/
+
+# Secrets — never commit keys
+.env
+*.key
+secrets.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (x402 demo deps)
+node_modules/
+package-lock.json
+
+# Keep data snapshot committed for reproducibility (do NOT ignore backtest/data_cache)
+# Keep backtest/output committed so the demo renders without a re-run
