@@ -8,7 +8,7 @@
 
 ![Undertow live demo — stress dial, regime, out-of-sample edge](demo/screenshot_hero.png)
 
-🎬 **[Watch the 80s demo on YouTube →](https://youtu.be/woqw4v46wxs)**
+🎬 **[Watch the 80s demo on YouTube →](https://youtu.be/woqw4v46wxs)**  ·  🏆 **[DoraHacks submission →](https://dorahacks.io/buidl/45368)**
 
 ---
 

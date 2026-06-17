@@ -34,6 +34,7 @@ perp_contract_analysis) via find_skill — the deepest available Agent-Hub integ
 ```
 
 **Links to paste:**
+- DoraHacks BUIDL: https://dorahacks.io/buidl/45368
 - Code repo: `https://github.com/tang-vu/undertow`
 - Demo video: https://youtu.be/woqw4v46wxs
 - Live demo page (in repo): `demo/index.html`
