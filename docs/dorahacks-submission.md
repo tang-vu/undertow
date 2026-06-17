@@ -27,8 +27,9 @@ max drawdown (−33% vs −77%) and ~1.8× the Sharpe over the full cycle (1.34 
 naive Fear & Greed contrarian outright. We report the result honestly, including where buy-and-hold
 edges out on raw return in a post-cycle-top window.
 
-It is agent-native: live data over MCP, keyless pay-per-request over x402 (verified real HTTP 402
-challenge), and it orchestrates CoinMarketCap's own Skill Hub services (detect_market_regime,
+It is agent-native and exercises ALL FOUR CoinMarketCap Agent Hub surfaces: live data over MCP,
+keyless pay-per-request over x402 (verified real HTTP 402 challenge), the official CMC CLI (installed
+& run), and orchestration of CMC's own Skill Hub services (detect_market_regime,
 perp_contract_analysis) via find_skill — the deepest available Agent-Hub integration.
 ```
 
@@ -114,14 +115,18 @@ BTC/ETH/BNB/SOL/XRP daily 2019→2026; weights tuned on train only; walk-forward
   (avoiding the −77% crash also forgoes the cheapest V-recovery re-entry). The win is risk-adjusted —
   comparable return, far less pain, and survivability. We report it straight.
 
-## Best Use of Agent Hub (verified live 2026-06-17)
+## Best Use of Agent Hub (all four surfaces, verified live 2026-06-17)
 
 - **MCP:** real Streamable-HTTP / JSON-RPC client (`agent_hub/mcp_client.py`) — live 12-tool handshake.
 - **x402:** keyless connect to `…/x402/mcp`; `agent_hub/x402_demo.py` triggers a **real HTTP 402**
   challenge and prints the EIP-3009 USDC-on-Base settlement params ($0.01/call).
+- **CMC CLI:** official `cmc` v0.1.0 installed & run; `agent_hub/cmc_cli_demo.sh` previews the exact
+  global-metrics / historical / derivatives endpoints (keyless `--dry-run`) — terminal-native access.
 - **Skill Hub:** `find_skill` → `execute_skill` orchestration of CMC's evidence services; a real
   captured response ships in `agent_hub/fixtures/`.
 - **Authored Skill:** `skill/undertow/SKILL.md` in CMC's exact format, `find_skill`-discoverable.
+
+→ MCP + x402 + CLI + Skills (authored *and* orchestrated): the full Agent Hub, each wired for real.
 
 ## Tech
 

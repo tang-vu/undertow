@@ -29,3 +29,7 @@ package-lock.json
 video/_tmp/
 video/audio/
 video/assets/_*
+
+# CMC CLI live exports (generated when run with a key)
+agent_hub/cli_*.json
+agent_hub/cli_*.csv

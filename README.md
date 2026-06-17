@@ -4,7 +4,7 @@
 
 > Built for the BNB × CoinMarketCap × Trust Wallet Hackathon — **Track 2 (Strategy Skills)** and the
 > **Best Use of Agent Hub** prize. One codebase: a backtested, reproducible strategy spec authored as
-> an LLM Skill, wired live to the CMC Agent Hub via MCP, x402, and the Skill Hub.
+> an LLM Skill, wired live to the CMC Agent Hub via MCP, x402, the CMC CLI, and the Skill Hub.
 
 ![Undertow live demo — stress dial, regime, out-of-sample edge](demo/screenshot_hero.png)
 
@@ -49,6 +49,8 @@ protocols are reported; the walk-forward (expanding refit, never-seen blocks) is
 → Undertow earns ~the same total return as BTC with **less than half the drawdown**, **~1.8× the
 Sharpe**, and **>2× the Calmar** — and laps the naive single-signal baseline.
 
+![Scorecard — Undertow vs BTC vs naive, full cycle](backtest/output/scorecard.png)
+
 ![Undertow walk-forward equity vs benchmarks](backtest/output/equity_curve.png)
 
 ### Walk-forward OOS (2021 cycle-top → 2026, the hardest window)
@@ -80,12 +82,18 @@ hosted services** into one decision.
 - **x402** — `x402_demo.py` connects to `…/x402/mcp` keyless and triggers a **real HTTP 402**
   (`"Provide PAYMENT-SIGNATURE header to pay and retry."`), then prints the EIP-3009 USDC-on-Base
   settlement params. An autonomous agent pays $0.01/call, no API key.
+- **CMC CLI** — `agent_hub/cmc_cli_demo.sh` drives the official `cmc` CLI (v0.1.0, installed & run);
+  keyless `--dry-run` previews the exact global-metrics / historical endpoints Undertow consumes —
+  terminal-native, automatable access to the same data.
 - **CMC Skill Hub** — at runtime Undertow uses `find_skill` → `execute_skill` to compose
   `detect_market_regime` (regime + live F&G/funding/OI in one call), `perp_contract_analysis`,
   `assess_volatility_expansion_risk`, and `altcoin_kol_sentiment`. A real captured response ships in
   `agent_hub/fixtures/`.
 - **find_skill-discoverable** — the SKILL.md front-loads the matching vocabulary + an explicit
   `Trigger:` line.
+
+→ Undertow exercises **all four Agent Hub surfaces** — MCP, x402, CMC CLI, and Skills (authored +
+orchestrated) — each wired for real, not described.
 
 See [`docs/agent-hub-notes.md`](docs/agent-hub-notes.md) for the full ground-truth map and
 [`skill/undertow/references/agent-hub-integration.md`](skill/undertow/references/agent-hub-integration.md)
@@ -126,6 +134,8 @@ python agent_hub/undertow_live.py --demo --token BTCUSDT      # zero credentials
 CMC_MCP_API_KEY=xxx python agent_hub/undertow_live.py --mcp --token ETHUSDT   # truly live
 python agent_hub/mcp_client.py        # live MCP handshake + 12-tool list (x402, no key)
 python agent_hub/x402_demo.py         # real x402 402-challenge + settlement params
+sh     agent_hub/cmc_cli_demo.sh      # official cmc CLI — keyless dry-run request previews
+python backtest/plot_scorecard.py     # regenerate the scorecard chart
 ```
 
 Open `demo/index.html` in any browser (no server needed).

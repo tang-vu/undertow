@@ -5,16 +5,18 @@ of the Hub, and each one is wired for real (verified live 2026-06-17), not just 
 
 ## 1. Three access modes for the live read
 
-| Mode | Endpoint | Auth | When |
+| Mode | Endpoint / tool | Auth | When |
 |------|----------|------|------|
 | **MCP (keyed)** | `https://mcp.coinmarketcap.com/mcp` | `X-CMC-MCP-API-KEY` | normal agent use |
 | **x402 (pay-per-request)** | `https://mcp.coinmarketcap.com/x402/mcp` | none — $0.01 USDC/call on Base | keyless / autonomous agents |
+| **CMC CLI** | `cmc` (github.com/openCMC/CoinMarketCap-CLI) | `CMC_API_KEY` | terminal-native / automation / reproducible workflows |
 | **Skill Hub (evidence services)** | `find_skill` / `execute_skill` | per Hub | richer regime / positioning reads |
 
-Repo scripts (`agent_hub/`) implement all three:
+Undertow touches **all four** Agent Hub surfaces. Repo scripts (`agent_hub/`):
 - `mcp_client.py` — dependency-light MCP-over-HTTP client (initialize / tools/list / tools/call).
 - `undertow_live.py` — emits the strategy spec from a live read (`--mcp`) or a committed real snapshot (`--demo`).
 - `x402_demo.py` — connects over x402 and triggers the real 402 payment challenge.
+- `cmc_cli_demo.sh` — drives the official `cmc` CLI (metrics / history / derivatives) into the same inputs.
 
 ## 2. Tools Undertow orchestrates
 
@@ -55,6 +57,9 @@ Two directions:
   "error":"Provide PAYMENT-SIGNATURE header to pay and retry."}`. (Reproduce: `python agent_hub/x402_demo.py`.)
 - Plain MCP without key → rejected (`"error: Token not found"`), confirming the key requirement.
 - `execute_skill(detect_market_regime)` → live evidence pack with regime + F&G + funding + OI.
+- CMC CLI v0.1.0 installed; keyless `cmc metrics --dry-run` / `cmc history --id 1 --days 90 --dry-run`
+  preview the exact `/v1/global-metrics/quotes/latest` and `/v1/cryptocurrency/quotes/historical`
+  requests. (Reproduce: `sh agent_hub/cmc_cli_demo.sh`.)
 
 ## 5. x402 settlement parameters (Base)
 
