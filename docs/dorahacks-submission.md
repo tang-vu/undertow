@@ -5,6 +5,74 @@
 
 ---
 
+## ⎘ COPY-PASTE FOR DORAHACKS (fill the form with these)
+
+**Project name:** `Undertow`
+
+**One-liner:** `An LLM Strategy Skill that trades the divergence between surface crypto sentiment (Fear & Greed) and sub-surface positioning (perp funding, open interest, price stretch), conditioned on market regime — emitting a backtested, agent-ready strategy spec wired live to the CoinMarketCap Agent Hub.`
+
+**Track / prize:** `Track 2 — Strategy Skills` + special prize `Best Use of Agent Hub`
+
+**Short description (summary field):**
+```
+Undertow reads two layers of the market — what the crowd FEELS (CMC Fear & Greed, social heat) versus
+how it is POSITIONED (perp funding extremity, open-interest change, price stretch from trend) — and
+switches strategy by regime (trend vs range). It is authored as a CoinMarketCap SKILL.md and emits a
+structured, agent-ready strategy spec: regime label, a positioning-stress score S, entry/exit/sizing
+rules, and risk parameters.
+
+The walk-forward backtest (BTC/ETH/BNB/SOL/XRP, daily, 2019–2026, trading costs + slippage modeled,
+weights tuned on the train split only) delivers Bitcoin-like total return with LESS THAN HALF the
+max drawdown (−33% vs −77%) and ~1.8× the Sharpe over the full cycle (1.34 vs 0.76), and beats a
+naive Fear & Greed contrarian outright. We report the result honestly, including where buy-and-hold
+edges out on raw return in a post-cycle-top window.
+
+It is agent-native: live data over MCP, keyless pay-per-request over x402 (verified real HTTP 402
+challenge), and it orchestrates CoinMarketCap's own Skill Hub services (detect_market_regime,
+perp_contract_analysis) via find_skill — the deepest available Agent-Hub integration.
+```
+
+**Links to paste:**
+- Code repo: `https://github.com/tang-vu/undertow`
+- Demo video: `<YouTube/Loom link — see below>`
+- Live demo page (in repo): `demo/index.html`
+
+**Tags:** `trading-strategy` `coinmarketcap` `agent-hub` `mcp` `x402` `backtest` `crypto` `llm-skill` `regime-switching`
+
+---
+
+## ⎘ YOUTUBE — title & description
+
+**Title:** `Undertow — a CoinMarketCap Agent Skill that trades sentiment vs positioning`
+
+**Description:**
+```
+Undertow is an LLM Strategy Skill for the CoinMarketCap AI Agent Hub. It trades the divergence
+between what the crowd FEELS (Fear & Greed, social heat) and how it is POSITIONED (perp funding,
+open interest, price stretch from trend), conditioned on market regime.
+
+Given {token, timeframe} it emits a backtested, agent-ready strategy spec: regime, a positioning-
+stress score, entry/exit/sizing, and risk.
+
+Out-of-sample (BTC/ETH/BNB/SOL/XRP, 2019–2026, costs modeled): Bitcoin-like return with less than
+half the drawdown, ~1.8× the Sharpe over the full cycle — and it beats a naive Fear & Greed
+contrarian outright.
+
+Agent-native: live data over MCP, pay-per-request over x402 (real HTTP 402 on Base), and it
+orchestrates CoinMarketCap's own Skill Hub services via find_skill.
+
+Code: https://github.com/tang-vu/undertow
+Built for the BNB × CoinMarketCap × Trust Wallet Hackathon — Track 2 + Best Use of Agent Hub.
+Research artifact, not investment advice.
+
+0:00 Thesis — surface sentiment vs the undertow
+0:30 The Skill — live stress score + regime → strategy spec
+0:45 Out-of-sample edge — half the drawdown
+1:00 Agent Hub — MCP · x402 · Skill Hub
+```
+
+---
+
 ## Problem
 
 Retail crypto reacts to **surface sentiment** — Fear & Greed, trending narratives, social hype — but

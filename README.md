@@ -6,6 +6,10 @@
 > **Best Use of Agent Hub** prize. One codebase: a backtested, reproducible strategy spec authored as
 > an LLM Skill, wired live to the CMC Agent Hub via MCP, x402, and the Skill Hub.
 
+![Undertow live demo — stress dial, regime, out-of-sample edge](demo/screenshot_hero.png)
+
+🎬 **[Watch the 80s demo →](video/undertow_demo.mp4)**
+
 ---
 
 ## The thesis
