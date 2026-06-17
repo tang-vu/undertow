@@ -91,9 +91,14 @@ hosted services** into one decision.
   `agent_hub/fixtures/`.
 - **find_skill-discoverable** — the SKILL.md front-loads the matching vocabulary + an explicit
   `Trigger:` line.
+- **IDE integration** — `agent_hub/cmc-agent-hub.mcp.json` is a drop-in `.mcp.json` that registers the
+  CMC Data + x402 MCP servers in any IDE coding agent (Claude Code / Cursor / Windsurf). This was
+  exercised live: inside Claude Code with the Hub connected, `find_skill` ranked 6 CMC services and
+  `execute_skill(perp_contract_analysis, BTC/1d)` returned a real evidence pack — captured in
+  `agent_hub/fixtures/ide_session_capture_2026-06-17.json`.
 
-→ Undertow exercises **all four Agent Hub surfaces** — MCP, x402, CMC CLI, and Skills (authored +
-orchestrated) — each wired for real, not described.
+→ Undertow exercises **all five Agent Hub surfaces** — MCP, x402, CMC CLI, Skills (authored +
+orchestrated), and IDE integration — each wired for real, not described.
 
 See [`docs/agent-hub-notes.md`](docs/agent-hub-notes.md) for the full ground-truth map and
 [`skill/undertow/references/agent-hub-integration.md`](skill/undertow/references/agent-hub-integration.md)
@@ -109,7 +114,7 @@ undertow/
 ├── backtest/               # reproducible harness (data → signals → strategy → walk-forward)
 │   ├── data_cache/         # committed data snapshot → identical numbers, zero credentials
 │   └── output/             # results.json + equity_curve.png
-├── agent_hub/              # live wiring: mcp_client.py · undertow_live.py · x402_demo.py · fixtures/
+├── agent_hub/              # live wiring: mcp_client.py · undertow_live.py · x402_demo.py · cmc-agent-hub.mcp.json (IDE) · fixtures/
 ├── demo/                   # self-contained index.html (stress dial · regime · equity · divergences)
 ├── docs/                   # agent-hub-notes.md · strategy-spec-and-methodology.md · dorahacks-submission.md
 └── README.md

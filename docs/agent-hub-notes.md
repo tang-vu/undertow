@@ -107,6 +107,26 @@ pull the live read **without any subscription/API key**.
 
 ---
 
+## 4b. IDE integration — the Agent Hub inside a coding agent
+
+The Hub's 5th surface is delivery: its MCP servers drop straight into an IDE coding agent (Claude Code,
+Cursor, Windsurf) via `.mcp.json`, so a developer's agent gets CMC data + Skills natively.
+
+```jsonc
+{ "mcpServers": {
+  "cmc-mcp":  { "type": "http", "url": "https://mcp.coinmarketcap.com/mcp",
+                "headers": { "X-CMC-MCP-API-KEY": "${CMC_MCP_API_KEY}" } },
+  "cmc-x402": { "type": "http", "url": "https://mcp.coinmarketcap.com/x402/mcp" } } }
+```
+
+Committed verbatim as `agent_hub/cmc-agent-hub.mcp.json`. **Verified live (2026-06-17):** inside Claude
+Code with the Agent Hub connected, `find_skill` ranked 6 CMC services for the divergence/regime query
+and `execute_skill(perp_contract_analysis, BTC/1d)` returned a real `evidence_pack` ("Powered by
+CoinMarketCap", ~50s) — full capture in `agent_hub/fixtures/ide_session_capture_2026-06-17.json`. This
+is the Skill-Hub surface (§3) reached through the IDE-integration surface, both at once.
+
+---
+
 ## 5. Data-history availability map — drives the backtest
 
 The core construct needs rolling z-scores over **multi-year daily history**. What is freely &

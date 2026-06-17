@@ -1,0 +1,52 @@
+{
+  "_evidence": "IDE integration surface — captured live inside an IDE coding agent (Claude Code) that has the CoinMarketCap Agent Hub MCP connected. This is the 5th Agent Hub surface: MCP, x402, CMC CLI, Skills, and IDE integrations. The agent discovered (find_skill) and executed (execute_skill) a CMC platform skill with zero local code — proof the Hub is wired natively into the IDE runtime, not just described.",
+  "captured_at": "2026-06-17T11:49:06Z",
+  "captured_in": "Claude Code (IDE coding agent)",
+  "mcp_server": "cmc-skill-hub (CoinMarketCap Agent Hub)",
+  "find_skill": {
+    "query": "Detect crypto market regime and positioning stress: Fear & Greed vs perp funding extremity, open-interest change, and price stretch divergence for BTC to decide fade-the-crowd vs ride-the-trend.",
+    "top_k": 6,
+    "ranked_candidates": [
+      { "uniqueName": "perp_contract_analysis", "domain": "cex", "resultType": "evidence_pack", "undertow_role": "funding/OI structure depth (undertow layer)" },
+      { "uniqueName": "detect_accumulation_breakout_transition", "domain": "cex", "resultType": "evidence_pack", "undertow_role": "range/breakout transition screen" },
+      { "uniqueName": "crypto_macro_overview", "domain": "research", "resultType": "evidence_pack", "undertow_role": "top-down regime overlay" },
+      { "uniqueName": "detect_oi_dark_flow_setup", "domain": "cex", "resultType": "evidence_pack", "undertow_role": "OI-divergence enhancement" },
+      { "uniqueName": "macro_liquidity_monitor", "domain": "research", "resultType": "evidence_pack", "undertow_role": "macro liquidity / carry-stress overlay" },
+      { "uniqueName": "btc_cross_asset_correlation", "domain": "research", "resultType": "evidence_pack", "undertow_role": "risk-asset vs independent-pricing context" }
+    ]
+  },
+  "execute_skill": {
+    "unique_name": "perp_contract_analysis",
+    "parameters": { "symbol": "BTC", "timeframe": "1d", "lookback_days": 30 },
+    "executionTimeMs": "50259",
+    "result": {
+      "type": "evidence_pack",
+      "skill_id": "perp_contract_analysis",
+      "timestamp": "2026-06-17T11:49:06.425024+00:00",
+      "data": {
+        "source_attribution": "Powered by CoinMarketCap",
+        "status": "ok",
+        "confidence": "medium",
+        "missing_or_stale_inputs": [],
+        "decision_report": {
+          "title": "Perp Contract Analysis",
+          "conclusion": "BTC market-flow read over 30 x 1d rows (~30d): current price 64814.7, OI/market-cap ratio 1.20%, funding 0.002075%, price change -15.61%, OI change -14.37%, futures CVD latest_delta -8.04B (-2045%), spot CVD latest_delta -1.56B (-1087%).",
+          "key_reads": {
+            "oi_marketcap_ratio_pct": 1.20,
+            "influence_gate_pct": 10,
+            "perp_role": "secondary",
+            "spot_role": "primary",
+            "price_oi_relation": "price_down_oi_down",
+            "funding_pct": 0.002075,
+            "funding_regime": "neutral",
+            "flow_read": "spot_selling_confirms_price_weakness"
+          }
+        },
+        "action_guidance": {
+          "bias": "neutral",
+          "reference_action": "Treat perp structure as secondary because OI/market-cap is 1.20% versus the 10% influence threshold; require clearer quantified confirmation first."
+        }
+      }
+    }
+  }
+}

@@ -11,12 +11,14 @@ of the Hub, and each one is wired for real (verified live 2026-06-17), not just 
 | **x402 (pay-per-request)** | `https://mcp.coinmarketcap.com/x402/mcp` | none — $0.01 USDC/call on Base | keyless / autonomous agents |
 | **CMC CLI** | `cmc` (github.com/openCMC/CoinMarketCap-CLI) | `CMC_API_KEY` | terminal-native / automation / reproducible workflows |
 | **Skill Hub (evidence services)** | `find_skill` / `execute_skill` | per Hub | richer regime / positioning reads |
+| **IDE integration** | CMC Agent Hub MCP servers in Claude Code / Cursor / Windsurf (`.mcp.json`) | per server | a dev's coding agent discovers + runs CMC skills natively, in-IDE |
 
-Undertow touches **all four** Agent Hub surfaces. Repo scripts (`agent_hub/`):
+Undertow touches **all five** Agent Hub surfaces. Repo scripts + artifacts (`agent_hub/`):
 - `mcp_client.py` — dependency-light MCP-over-HTTP client (initialize / tools/list / tools/call).
 - `undertow_live.py` — emits the strategy spec from a live read (`--mcp`) or a committed real snapshot (`--demo`).
 - `x402_demo.py` — connects over x402 and triggers the real 402 payment challenge.
 - `cmc_cli_demo.sh` — drives the official `cmc` CLI (metrics / history / derivatives) into the same inputs.
+- `cmc-agent-hub.mcp.json` — drop-in IDE config (Claude Code / Cursor) that registers the CMC Data MCP + x402 MCP servers; `fixtures/ide_session_capture_2026-06-17.json` is a live capture of an IDE agent discovering + executing a CMC skill through exactly this wiring.
 
 ## 2. Tools Undertow orchestrates
 
@@ -60,6 +62,33 @@ Two directions:
 - CMC CLI v0.1.0 installed; keyless `cmc metrics --dry-run` / `cmc history --id 1 --days 90 --dry-run`
   preview the exact `/v1/global-metrics/quotes/latest` and `/v1/cryptocurrency/quotes/historical`
   requests. (Reproduce: `sh agent_hub/cmc_cli_demo.sh`.)
+- **IDE integration:** captured live inside Claude Code (an IDE coding agent) with the CMC Agent Hub
+  MCP connected — `find_skill` ranked 6 CMC services for the divergence/regime query, then
+  `execute_skill(perp_contract_analysis, BTC/1d)` returned a real `evidence_pack`
+  (`source_attribution: "Powered by CoinMarketCap"`, ~50s) with zero local analysis code. Full capture:
+  `agent_hub/fixtures/ide_session_capture_2026-06-17.json`. (Reproduce: drop `cmc-agent-hub.mcp.json`
+  into any IDE agent's `.mcp.json`, then ask it for an Undertow read.)
+
+## 6. IDE integration — wire CMC Agent Hub into a coding agent
+
+The Hub ships not just as raw endpoints but as drop-in MCP servers for IDE coding agents. Register them
+once and the agent gets CMC data + Skills natively:
+
+```jsonc
+// .mcp.json (Claude Code) · ~/.cursor/mcp.json (Cursor) · same shape for Windsurf
+{
+  "mcpServers": {
+    "cmc-mcp":  { "type": "http", "url": "https://mcp.coinmarketcap.com/mcp",
+                  "headers": { "X-CMC-MCP-API-KEY": "${CMC_MCP_API_KEY}" } },
+    "cmc-x402": { "type": "http", "url": "https://mcp.coinmarketcap.com/x402/mcp" }
+  }
+}
+```
+
+CLI equivalent: `claude mcp add --transport http cmc-mcp https://mcp.coinmarketcap.com/mcp --header "X-CMC-MCP-API-KEY: $CMC_MCP_API_KEY"`.
+The committed `agent_hub/cmc-agent-hub.mcp.json` is this config verbatim. The Skill-Hub services in §2
+(`find_skill` / `execute_skill`) are reached the same way per the Agent Hub onboarding
+(coinmarketcap.com/api/agent) — and this repo's fixtures were captured through exactly that connection.
 
 ## 5. x402 settlement parameters (Base)
 
