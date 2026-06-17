@@ -24,3 +24,8 @@ package-lock.json
 
 # Keep data snapshot committed for reproducibility (do NOT ignore backtest/data_cache)
 # Keep backtest/output committed so the demo renders without a re-run
+
+# Video: keep the final MP4 + scenes + build scripts; drop regenerable intermediates
+video/_tmp/
+video/audio/
+video/assets/_*
