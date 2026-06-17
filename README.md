@@ -8,7 +8,7 @@
 
 ![Undertow live demo — stress dial, regime, out-of-sample edge](demo/screenshot_hero.png)
 
-🎬 **[Watch the 80s demo →](video/undertow_demo.mp4)**
+🎬 **[Watch the 80s demo on YouTube →](https://youtu.be/woqw4v46wxs)**
 
 ---
 
@@ -157,7 +157,7 @@ Open `demo/index.html` in any browser (no server needed).
 
 ## Demo video
 
-📹 **`video/undertow_demo.mp4`** — ~80s narrated walkthrough (neural voice `en-US-AndrewNeural`, ocean ambience). Rebuild: `python video/build_scenes.py && python video/make_narration_edge.py && python video/build_video.py`.
+📹 **[YouTube →](https://youtu.be/woqw4v46wxs)** — ~80s narrated walkthrough (neural voice `en-US-AndrewNeural`, ocean ambience). Local file: `video/undertow_demo.mp4`. Rebuild: `python video/build_scenes.py && python video/make_narration_edge.py && python video/build_video.py`.
 
 ### Script outline (60–90s)
 

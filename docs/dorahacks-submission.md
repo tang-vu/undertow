@@ -35,7 +35,7 @@ perp_contract_analysis) via find_skill — the deepest available Agent-Hub integ
 
 **Links to paste:**
 - Code repo: `https://github.com/tang-vu/undertow`
-- Demo video: `<YouTube/Loom link — see below>`
+- Demo video: https://youtu.be/woqw4v46wxs
 - Live demo page (in repo): `demo/index.html`
 
 **Tags:** `trading-strategy` `coinmarketcap` `agent-hub` `mcp` `x402` `backtest` `crypto` `llm-skill` `regime-switching`
@@ -153,7 +153,7 @@ leverage. No cherry-picked window. No 400% overfit curve.
 ## Links
 
 - Repo: https://github.com/tang-vu/undertow
-- Demo video: `video/undertow_demo.mp4` (84s, narrated) — *upload to YouTube/Loom and paste the link here*
+- Demo video: https://youtu.be/woqw4v46wxs (~80s, narrated)
 - Live demo page: `demo/index.html`
 
 ---
