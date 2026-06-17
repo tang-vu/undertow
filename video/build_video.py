@@ -16,7 +16,7 @@ SCN = os.path.join(ROOT, "scenes")
 AUD = os.path.join(ROOT, "audio")
 TMP = os.path.join(ROOT, "_tmp")
 OUT = os.path.join(ROOT, "undertow_demo.mp4")
-PAD = 1.0           # extra seconds per scene (0.4 lead + 0.6 tail)
+PAD = 0.6           # extra seconds per scene (0.4 lead + 0.2 tail); inter-phrase pauses are baked in
 FPS = 30
 N = 7
 
