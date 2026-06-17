@@ -59,17 +59,18 @@ Out-of-sample (BTC/ETH/BNB/SOL/XRP, 2019–2026, costs modeled): Bitcoin-like re
 half the drawdown, ~1.8× the Sharpe over the full cycle — and it beats a naive Fear & Greed
 contrarian outright.
 
-Agent-native: live data over MCP, pay-per-request over x402 (real HTTP 402 on Base), and it
-orchestrates CoinMarketCap's own Skill Hub services via find_skill.
+Agent-native across all four CMC Agent Hub surfaces: live data over MCP and the CMC CLI,
+pay-per-request over x402 (real HTTP 402 on Base), and orchestration of CoinMarketCap's own Skill
+Hub services via find_skill.
 
 Code: https://github.com/tang-vu/undertow
 Built for the BNB × CoinMarketCap × Trust Wallet Hackathon — Track 2 + Best Use of Agent Hub.
 Research artifact, not investment advice.
 
 0:00 Thesis — surface sentiment vs the undertow
-0:30 The Skill — live stress score + regime → strategy spec
-0:45 Out-of-sample edge — half the drawdown
-1:00 Agent Hub — MCP · x402 · Skill Hub
+0:23 The Skill — live stress + regime → strategy spec
+0:36 Out-of-sample edge — half the drawdown
+0:58 Agent Hub — MCP · x402 · CLI · Skills
 ```
 
 ---
